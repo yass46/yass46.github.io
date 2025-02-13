@@ -4,10 +4,16 @@
   let produtos = getAllItems();
   let categoriaSelecionada = "Todos";
   let currentIndex = 0;
+  let mensagemCompra = "";
 
   function filtrarProdutos(categoria) {
     categoriaSelecionada = categoria;
     currentIndex = 0;
+  }
+
+  function comprarProduto(nome) {
+    mensagemCompra = `Você comprou: ${nome}`;
+    setTimeout(() => mensagemCompra = "", 3000);
   }
 
   $: produtosFiltrados = categoriaSelecionada === "Todos"
@@ -45,7 +51,7 @@
             <h2>{produto.nome}</h2>
             <p>{produto.material}</p>
             <p class="preco">R$ {produto.preco.toLocaleString("pt-BR")}</p>
-            <button class="comprar">Comprar</button>
+            <button class="comprar" on:click={() => comprarProduto(produto.nome)}>Comprar</button>
           </div>
         {/each}
       </div>
@@ -54,6 +60,10 @@
   </div>
 {:else}
   <p class="mensagem-vazia">Nenhum produto encontrado.</p>
+{/if}
+
+{#if mensagemCompra}
+  <div class="aviso-compra">{mensagemCompra}</div>
 {/if}
 
 <style>
@@ -187,5 +197,19 @@
     font-size: 1.2rem;
     color: gray;
     margin-top: 20px;
+  }
+
+  .aviso-compra {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
   }
 </style>
