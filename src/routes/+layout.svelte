@@ -1,6 +1,6 @@
 <script>
   import { getAllItems } from "$lib/index.js";
-  
+
   let produtos = getAllItems();
   let categoriaSelecionada = "Todos";
   let currentIndex = 0;
@@ -30,13 +30,14 @@
 </script>
 
 <nav class="navbar">
-  <h1 class="logo">Luxo Joias</h1>
+  <h1 class="logo">Loja Yasmim</h1>
   <ul>
     <li><button on:click={() => filtrarProdutos("Todos")} class:selected={categoriaSelecionada === "Todos"}>Todos</button></li>
     <li><button on:click={() => filtrarProdutos("Anéis")} class:selected={categoriaSelecionada === "Anéis"}>Anéis</button></li>
     <li><button on:click={() => filtrarProdutos("Colares")} class:selected={categoriaSelecionada === "Colares"}>Colares</button></li>
     <li><button on:click={() => filtrarProdutos("Pulseiras")} class:selected={categoriaSelecionada === "Pulseiras"}>Pulseiras</button></li>
     <li><button on:click={() => filtrarProdutos("Brincos")} class:selected={categoriaSelecionada === "Brincos"}>Brincos</button></li>
+
   </ul>
 </nav>
 
@@ -72,6 +73,7 @@
     background: #f8f8f8;
     color: #333;
   }
+
   .navbar {
     background: black;
     color: white;
@@ -94,21 +96,28 @@
     gap: 20px;
   }
 
-  .navbar button {
+  .navbar button, .navbar-link {
     background: transparent;
     color: white;
     border: none;
     font-size: 1rem;
+    padding: 8px 16px;
     cursor: pointer;
-    padding: 5px 15px;
     transition: 0.3s;
+    line-height: 1.4;
   }
 
   .navbar button:hover,
-  .navbar button[selected] {
+  .navbar button[selected], 
+  .navbar-link:hover {
     background: gold;
     border-radius: 20px;
     color: black;
+  }
+
+  .navbar-link {
+    text-decoration: none;
+    padding: 8px 16px;
   }
 
   .carousel {
